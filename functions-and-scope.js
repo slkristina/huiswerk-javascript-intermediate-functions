@@ -8,11 +8,19 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
 /* 1a: Script schrijven  */
 // De administratie moet weten hoeveel studenten er dit blok cum laude zijn afgestudeerd (8 of hoger). Daar moeten namelijk speciale diploma's voor besteld worden.
-// Schrijf de stapjes om dit te kunnen checken eerst uit en vraag jezelf de volgende dingen af:
+// Schrijf de stapjes om dit te kunnen checken eerst uit en vraag
+// jezelf de volgende dingen af:
 // * Hoe kan ik iedere waarde van de array checken op deze conditie?
 // * Hoe zorg ik ervoor dat dit ook werkt wanneer de array 100 entries bevat?
 // * Hoe zorgt ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan bijhouden?
 // Log het antwoord in de terminal.
+
+function isHigherThan8(grade) {
+    return grade >= 8;
+}
+
+const higherThan8 = grades.filter(grade => isHigherThan8(grade));
+console.log(`${higherThan8.length} studenten zijn afgestudeerd met 8 of hoger`);
 
 // ---- Verwachte uitkomst: 6
 
@@ -22,12 +30,19 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Zorg ervoor dat jouw functie ook werkt als we een andere array met eindcijfers willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
 
+
+function checkCumLaude(gradesArray) {
+    return gradesArray
+        .filter(grade => isHigherThan8(grade))
+        .length;
+}
+
+console.log(`Het aantal Cum laude studenten is ${checkCumLaude(grades)}`)
+
 // ---- Verwachte uitkomsten:
 // cumLaude(grades) geeft 6
 // cumLaude([6, 4, 5]) geeft 0
 // cumLaude([8, 9, 4, 6, 10]) geeft 3
-
-
 
 
 /* Opdracht  2: Gemiddeld cijfer */
@@ -40,6 +55,17 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // * Hoe zorgt ik ervoor dat ik alle waardes uit de array kan langslopen, ook als de array wel 100 entries zou bevatten?
 // Log het antwoord in de terminal.
 
+function calculateAverageGrade(gradesArray) {
+    let sum = 0;
+    for (let i = 0; i < gradesArray.length; i++) {
+        sum += gradesArray[i];
+    }
+    return sum / gradesArray.length;
+}
+
+let average = calculateAverageGrade(grades);
+console.log(average);
+
 // ---- Verwachte uitkomst: 6.642857142857143
 
 
@@ -47,6 +73,19 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Schrijf een functie genaamd averageGrade, die een array van cijfers verwacht (zoals grades) en het gemiddelde cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 2a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
+
+function averageGrade(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    let average = sum / arr.length;
+    return average.toFixed(2);
+}
+
+let arr = [];
+let gemiddeldeCijfer = averageGrade(arr);
+console.log(gemiddeldeCijfer);
 
 // ---- Verwachte uitkomsten:
 // averageGrade(grades) geeft 6.642857142857143
@@ -58,8 +97,7 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Zorg ervoor dat het gemiddelde cijfer dat wordt teruggegeven uit de functie netjes wordt afgerond op twee decimalen.
 // Tip: Google is your best friend!
 
-
-
+//is geimplementeerd worden in 2b
 
 /* Bonusopdracht: hoogste cijfer */
 
@@ -70,6 +108,10 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // * Hoe zorgt ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan opslaan?
 // Log het antwoord in de terminal.
 
+
+
+
+
 // ---- Verwachte uitkomst: 9
 
 
@@ -77,6 +119,18 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Schrijf een functie genaamd highestGrade, die een array van cijfers verwacht (zoals grades) en het hoogste cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 3a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
+
+function getHighestGrade(gradesArray) {
+            if (!Array.isArray(gradesArray) || gradesArray.length === 0) {
+            return console.log(`Input is empty or not valid`);
+        }
+
+    return Math.max(...gradesArray);
+    }
+
+let highestGrade =  getHighestGrade(grades);
+console.log("Hoogste cijfer is:", highestGrade);
+
 
 // ---- Verwachte uitkomsten:
 // highestGrade(grades) geeft 9
